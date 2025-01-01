@@ -9,15 +9,22 @@ module.exports = (generatorAPI) => {
   });
 
   generatorAPI.protocolGenerate({
-    [pluginToTemplateProtocol.INSERT_IMPORT]: {
+    [pluginToTemplateProtocol.INSERT_IMPORT_PROTOCOL]: {
       params: {
         imports: [
           {
-            dir: "src/App.jsx",
-            name: "{ BrowserRouter as Router, Switch, Route }",
-            from: "react-router-dom",
+            dir: "src/App",
+            modules: [
+              {
+                name: "{ BrowserRouter as Router, Switch, Route }",
+                from: "react-router-dom",
+              }
+            ]
           },
         ],
+        astOptions: {
+          parserOptions: { sourceType: "module", plugins: ["typescript", "jsx"] }
+        }
       },
     },
   });

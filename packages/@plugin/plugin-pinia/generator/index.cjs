@@ -9,15 +9,22 @@ module.exports = (generatorAPI) => {
   });
 
   generatorAPI.protocolGenerate({
-    [pluginToTemplateProtocol.INSERT_IMPORT]: {
+    [pluginToTemplateProtocol.INSERT_IMPORT_PROTOCOL]: {
       params: {
         imports: [
           {
-            dir: "src/main.js",
-            name: "{ createPinia }",
-            from: "pinia",
+            dir: "src/main",
+            modules: [
+              {
+                name: "{ createPinia }",
+                from: "pinia",
+              }
+            ]
           },
         ],
+        astOptions: {
+          parserOptions: { sourceType: "module", plugins: ["typescript"] }
+        }
       },
     },
   });
